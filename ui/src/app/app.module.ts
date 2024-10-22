@@ -50,7 +50,7 @@ import {environment} from '../environments/environment';
         AppComponent, 
         EmptyStateComponent,
         EditorComponent,
-        ConfigureValidationComponent
+    ConfigureValidationComponent,
     ],
     providers: [
         WindowRef,
@@ -58,9 +58,10 @@ import {environment} from '../environments/environment';
         ConfigService,
         DownloaderService, 
         StorageService,
-        ApiDefinitionFileService
+    ApiDefinitionFileService,
+    ApiService,
+    // provideRoutes(routes),
     ],
-    bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
