@@ -139,18 +139,24 @@ export class EditorComponent implements OnInit {
   }
 
   public async save(
-    mode: "save" | "save-as" = "save",
+    mode: "save" | "save-as" | "save-as-url" = "save",
     format?: "json" | "yaml"
   ): Promise<void> {
     console.info("[EditorComponent] Saving the API definition.");
     this.generateError = null;
+    if (mode !== "save-as-url") {
+      await this.apiDefinitionFile.save(this.apiEditor.getValue().spec, {
+        mode,
+        format,
+      });
 
-    await this.apiDefinitionFile.save(this.apiEditor.getValue().spec, {
-      mode,
-      format,
-    });
-
-    this.storage.clear();
+      this.storage.clear();
+    } else {
+      // copy the url to the clipboard
+      const url = window.location.href;
+      // @ts-ignore
+      navigator.clipboard.writeText(url);
+    }
   }
 
   public close(): void {
