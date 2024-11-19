@@ -115,6 +115,11 @@ export class EditorComponent implements OnInit {
     }, 5000);
   }
 
+  public selectInput(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    inputElement.select();
+  }
+
   /**
    * Called to convert from OpenAPI 2 to 3.
    */
